@@ -5,6 +5,10 @@ public class MDI_Principal extends javax.swing.JFrame {
      */
     public MDI_Principal() {
         initComponents();
+        
+        JIF_Lista_OM jiflc=new JIF_Lista_OM();
+        jiflc.setVisible(true);
+        desktopPane.add(jiflc);
     }
 
     /**
@@ -20,6 +24,8 @@ public class MDI_Principal extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
         saveMenuItem = new javax.swing.JMenuItem();
@@ -36,7 +42,7 @@ public class MDI_Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("Clientes");
+        jMenu1.setText("Orden de Mantenimiento");
 
         jMenuItem1.setText("Lista");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -47,6 +53,13 @@ public class MDI_Principal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         menuBar.add(jMenu1);
+
+        jMenu2.setText("Trabajador");
+
+        jMenuItem2.setText("Lista");
+        jMenu2.add(jMenuItem2);
+
+        menuBar.add(jMenu2);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -115,11 +128,11 @@ public class MDI_Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 966, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1256, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
         );
 
         pack();
@@ -130,7 +143,7 @@ public class MDI_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        JIF_Lista_Clientes jiflc=new JIF_Lista_Clientes();
+        JIF_Lista_OM jiflc=new JIF_Lista_OM();
         jiflc.setVisible(true);
         desktopPane.add(jiflc);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -182,7 +195,9 @@ public class MDI_Principal extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;

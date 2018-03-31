@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="utf8" collation="utf8_general_ci">bd_ccm</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="persona" view="colnames">
+<left>381</left>
+<top>6</top>
+<width>159</width>
+<height>163</height>
+<sql_create_table>CREATE TABLE `persona` (
+  `DNI` char(8) NOT NULL,
+  `NOMBRES` varchar(30) NOT NULL,
+  `APELLIDOP` varchar(30) NOT NULL,
+  `APELLIDOM` varchar(30) NOT NULL,
+  `FECHANACIMIENTO` date NOT NULL,
+  PRIMARY KEY (`DNI`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="trabajador" view="colnames">
+<left>564</left>
+<top>53</top>
+<width>112</width>
+<height>180</height>
+<sql_create_table>CREATE TABLE `trabajador` (
+  `CODIGO` char(4) NOT NULL,
+  `DNI` char(8) NOT NULL,
+  `IDPUESTO` char(3) NOT NULL,
+  `IDAREA` char(3) NOT NULL,
+  `CORREO` varchar(60) NOT NULL,
+  `CODIGOUN` char(4) DEFAULT NULL,
+  PRIMARY KEY (`CODIGO`),
+  KEY `DNI` (`DNI`),
+  KEY `IDPUESTO` (`IDPUESTO`),
+  KEY `IDAREA` (`IDAREA`),
+  KEY `CODIGOUN` (`CODIGOUN`),
+  CONSTRAINT `trabajador_ibfk_2` FOREIGN KEY (`DNI`) REFERENCES `persona` (`DNI`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `trabajador_ibfk_3` FOREIGN KEY (`IDPUESTO`) REFERENCES `puesto` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `trabajador_ibfk_4` FOREIGN KEY (`CODIGOUN`) REFERENCES `unidadnegocio` (`CODIGO`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="USUARIO" view="colnames">
+<left>699</left>
+<top>88</top>
+<width>151</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `USUARIO` (
+  `CODTRABAJADOR` char(4) NOT NULL,
+  `USUARIO` varchar(20) NOT NULL,
+  `CONTRASEÑA` varchar(20) NOT NULL,
+  KEY `CODTRABAJADOR` (`CODTRABAJADOR`),
+  CONSTRAINT `USUARIO_ibfk_1` FOREIGN KEY (`CODTRABAJADOR`) REFERENCES `trabajador` (`CODIGO`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="SUPERVISOR_ENOSA" view="colnames">
+<left>699</left>
+<top>236</top>
+<width>183</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `SUPERVISOR_ENOSA` (
+  `CODIGO` char(4) NOT NULL,
+  `APELLIDOS Y NOMBRES` varchar(100) NOT NULL,
+  PRIMARY KEY (`CODIGO`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="IMAGEN" view="colnames">
+<left>447</left>
+<top>177</top>
+<width>89</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `IMAGEN` (
+  `NROOM` char(9) NOT NULL,
+  `IMAGE` longblob NOT NULL,
+  KEY `NROOM` (`NROOM`),
+  CONSTRAINT `IMAGEN_ibfk_1` FOREIGN KEY (`NROOM`) REFERENCES `orden_mantenimiento` (`NRO`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="orden_mantenimiento" view="colnames">
+<left>250</left>
+<top>258</top>
+<width>172</width>
+<height>248</height>
+<sql_create_table>CREATE TABLE `orden_mantenimiento` (
+  `NRO` char(9) NOT NULL,
+  `DESCRIPCION` text NOT NULL,
+  `NROALIMENTADOR` char(4) NOT NULL,
+  `SUPERVISOR_ENOSA` varchar(60) NOT NULL,
+  `FECHA_INICIO` date NOT NULL,
+  `FECHA_FIN` date NOT NULL,
+  `FECHA_LIMIT_LIQUID` date NOT NULL,
+  `IDAREA` char(3) NOT NULL,
+  `RESPONSABLE_OM` varchar(60) NOT NULL,
+  `COSTO_PLAN` decimal(10,0) NOT NULL,
+  PRIMARY KEY (`NRO`),
+  KEY `NROALIMENTADOR` (`NROALIMENTADOR`),
+  CONSTRAINT `orden_mantenimiento_ibfk_1` FOREIGN KEY (`NROALIMENTADOR`) REFERENCES `ALIMENTADOR` (`NUMERO`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="ALIMENTADOR" view="colnames">
+<left>446</left>
+<top>300</top>
+<width>95</width>
+<height>95</height>
+<sql_create_table>CREATE TABLE `ALIMENTADOR` (
+  `NUMERO` char(4) NOT NULL,
+  PRIMARY KEY (`NUMERO`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="area" view="colnames">
+<left>569</left>
+<top>344</top>
+<width>77</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `area` (
+  `ID` char(3) NOT NULL,
+  `AREA` varchar(30) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>
